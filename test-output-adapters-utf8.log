@@ -1,0 +1,109 @@
+﻿Script started
+CWD: C:\Users\Assam\Desktop\Ahsan\restaurant-forecasting
+Testing connection to: C:\Users\Assam\Desktop\Ahsan\restaurant-forecasting\dev.db
+Attempting to connect...
+node : CRITICAL 
+ERROR: Cannot read 
+properties of 
+undefined (reading 
+'replace')
+At line:1 char:1
++ node 
+prisma-test.js > tes
+t-output-adapters.lo
+g 2>&1; Get-Content 
+test ...
++ ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
+    + CategoryInfo  
+            : 
+NotSpecified:     
+(CRITICAL 
+ERROR:...d    ing 
+'replace'):Strin    
+g) [], 
+RemoteExcepti    on
+    + 
+FullyQualifiedErro  
+  rId : 
+NativeCommandE    
+rror
+ 
+TypeError: Cannot 
+read properties of 
+undefined (reading 
+'replace')
+    at createBetterS
+QLite3Client (C:\Use
+rs\Assam\Desktop\Ahs
+an\restaurant-foreca
+sting\node_modules\@
+prisma\adapter-bette
+r-sqlite3\dist\index
+.js:648:22)
+    at PrismaBetterS
+qlite3AdapterFactory
+.connect (C:\Users\A
+ssam\Desktop\Ahsan\r
+estaurant-forecastin
+g\node_modules\@pris
+ma\adapter-better-sq
+lite3\dist\index.js:
+637:59)
+    at e.connect (C:
+\Users\Assam\Desktop
+\Ahsan\restaurant-fo
+recasting\node_modul
+es\@prisma\client\ru
+ntime\client.js:57:3
+11)
+    at #s (C:\Users\
+Assam\Desktop\Ahsan\
+restaurant-forecasti
+ng\node_modules\@pri
+sma\client\runtime\c
+lient.js:57:11956)
+    at C:\Users\Assa
+m\Desktop\Ahsan\rest
+aurant-forecasting\n
+ode_modules\@prisma\
+client\runtime\clien
+t.js:57:11293
+    at Object.runInC
+hildSpan (C:\Users\A
+ssam\Desktop\Ahsan\r
+estaurant-forecastin
+g\node_modules\@pris
+ma\client\runtime\cl
+ient.js:65:2516)
+    at 
+ri.runInChildSpan (C
+:\Users\Assam\Deskto
+p\Ahsan\restaurant-f
+orecasting\node_modu
+les\@prisma\client\r
+untime\client.js:65:
+2850)
+    at #i (C:\Users\
+Assam\Desktop\Ahsan\
+restaurant-forecasti
+ng\node_modules\@pri
+sma\client\runtime\c
+lient.js:57:11231)
+    at Dt.request (C
+:\Users\Assam\Deskto
+p\Ahsan\restaurant-f
+orecasting\node_modu
+les\@prisma\client\r
+untime\client.js:58:
+1995)
+    at 
+Object.singleLoader 
+(C:\Users\Assam\Desk
+top\Ahsan\restaurant
+-forecasting\node_mo
+dules\@prisma\client
+\runtime\client.js:6
+5:6595)
+

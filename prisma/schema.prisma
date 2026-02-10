@@ -1,0 +1,107 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model RestaurantGroup {
+  id        String     @id @default(uuid())
+  name      String
+  locations Location[]
+}
+
+model Location {
+  id               String            @id @default(uuid())
+  name             String
+  restaurantGroup  RestaurantGroup   @relation(fields: [restaurantGroupId], references: [id])
+  restaurantGroupId String
+  demandEvents     DemandEvent[]
+  rollups          HourlyDemandRollup[]
+  forecasts        Forecast[]
+  staffingPlans    StaffingPlan[]
+  feedbackEvents   FeedbackEvent[]
+  
+  // Configuration for labor
+  guestsPerServer   Float @default(15)
+  tablesPerHost     Float @default(10)
+  ordersPerKitchen  Float @default(8)
+  minHosts          Int   @default(1)
+  minServers        Int   @default(2)
+  minKitchen        Int   @default(2)
+}
+
+model DemandEvent {
+  id         String   @id @default(uuid())
+  locationId String
+  timestamp  DateTime
+  eventType  String   // guest_arrival | order_placed | table_seated
+  partySize  Int
+  revenue    Float?
+  source     String   // api | csv | seed
+  location   Location @relation(fields: [locationId], references: [id])
+
+  @@index([locationId])
+  @@index([timestamp])
+}
+
+model HourlyDemandRollup {
+  id         String   @id @default(uuid())
+  locationId String
+  timestamp  DateTime // Represents the start of the hour
+  hourOfDay  Int
+  dayOfWeek  Int
+  avgGuests  Float
+  avgOrders  Float
+  avgRevenue Float
+  location   Location @relation(fields: [locationId], references: [id])
+
+  @@index([locationId])
+  @@index([timestamp])
+  @@index([dayOfWeek])
+}
+
+model Forecast {
+  id          String   @id @default(uuid())
+  locationId  String
+  timestamp   DateTime // For which hour this forecast is
+  type        String   @default("deterministic") // deterministic | ml
+  guestCount  Float
+  orderCount  Float
+  revenue     Float
+  location    Location @relation(fields: [locationId], references: [id])
+
+  @@index([locationId])
+  @@index([timestamp])
+}
+
+model StaffingPlan {
+  id          String   @id @default(uuid())
+  locationId  String
+  timestamp   DateTime
+  hosts       Int
+  servers     Int
+  kitchen     Int
+  confidence  String   // high | medium | low
+  location    Location @relation(fields: [locationId], references: [id])
+
+  @@index([locationId])
+  @@index([timestamp])
+}
+
+model FeedbackEvent {
+  id               String   @id @default(uuid())
+  locationId       String
+  date             DateTime
+  actualGuests     Int
+  actualLaborHours Float
+  avgWaitTime      Float
+  location         Location @relation(fields: [locationId], references: [id])
+
+  @@index([locationId])
+  @@index([date])
+}
