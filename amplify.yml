@@ -19,6 +19,9 @@ frontend:
 
 backend:
   phases:
+    install:
+      commands:
+        - npm ci
     build:
       commands:
         - npx prisma migrate deploy
