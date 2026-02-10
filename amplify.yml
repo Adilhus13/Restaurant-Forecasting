@@ -1,19 +1,25 @@
 version: 1
 
-phases:
-  preBuild:
-    commands:
-      - echo "Installing dependencies..."
-      - npm ci
-  build:
-    commands:
-      - echo "Running Prisma migrations..."
-      - npx prisma migrate deploy
-      - echo "Building Next.js app..."
-      - npm run build
-  postBuild:
-    commands:
-      - echo "Build complete"
+backend:
+  phases:
+    preBuild:
+      commands:
+        - echo "Installing dependencies..."
+        - npm ci
+    build:
+      commands:
+        - echo "Running Prisma migrations..."
+        - npx prisma migrate deploy
+
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - echo "Frontend preBuild"
+    build:
+      commands:
+        - echo "Building Next.js app..."
+        - npm run build
 
 artifacts:
   baseDirectory: .next
