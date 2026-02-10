@@ -19,11 +19,19 @@ export async function POST(req: Request) {
 
   const header = lines[0].split(',').map(h => h.trim());
   const rows = lines.slice(1);
-  const events = [] as any[];
+  const events: Array<{
+    id: string;
+    locationId: string;
+    timestamp: Date;
+    eventType: string;
+    partySize: number;
+    revenue: number | null;
+    source: string;
+  }> = [];
 
   for (const r of rows) {
     const cols = r.split(',');
-    const obj: any = {};
+    const obj: Record<string, string> = {};
     header.forEach((h, i) => obj[h] = cols[i]);
 
     // Minimal validation
@@ -47,8 +55,8 @@ export async function POST(req: Request) {
     });
   }
 
-  // Bulk insert with skipDuplicates
-  await prisma.demandEvent.createMany({ data: events, skipDuplicates: true });
+  // Bulk insert
+  await prisma.demandEvent.createMany({ data: events });
 
   // Recompute rollups for affected locations (simple inline approach)
   const locationId = events[0].locationId;

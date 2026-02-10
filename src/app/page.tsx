@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { 
   TrendingUp, 
   Users, 
@@ -13,28 +13,54 @@ import {
   Filter
 } from "lucide-react";
 import { 
-  LineChart, 
-  Line, 
+  AreaChart,
+  Area,
   XAxis, 
   YAxis, 
   CartesianGrid, 
   Tooltip, 
   ResponsiveContainer,
-  AreaChart,
-  Area
 } from "recharts";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const SidebarItem = ({ icon: Icon, label, href, active = false }: any) => (
+interface ForecastItem {
+  hour: string;
+  guests: number;
+  orders: number;
+}
+
+interface LaborItem {
+  hour: string;
+  hosts: number;
+  servers: number;
+  kitchen: number;
+  confidence: string;
+}
+
+interface SidebarItemProps {
+  icon: React.ComponentType<{ size: number }>;
+  label: string;
+  href: string;
+  active?: boolean;
+}
+
+const SidebarItem = ({ icon: Icon, label, href, active = false }: SidebarItemProps): React.JSX.Element => (
   <Link href={href} className={`nav-link ${active ? 'active' : ''}`}>
     <Icon size={20} />
     <span>{label}</span>
   </Link>
 );
 
-const StatCard = ({ title, value, icon: Icon, trend }: any) => (
+interface StatCardProps {
+  title: string;
+  value: string | number;
+  icon: React.ComponentType<{ size: number }>;
+  trend?: string;
+}
+
+const StatCard = ({ title, value, icon: Icon, trend }: StatCardProps): React.JSX.Element => (
   <div className="card">
     <div className="card-title">
       <Icon size={16} />
@@ -49,44 +75,30 @@ const StatCard = ({ title, value, icon: Icon, trend }: any) => (
   </div>
 );
 
+const MOCK_FORECAST_DATA: ForecastItem[] = [
+  { hour: '08:00', guests: 12, orders: 8 },
+  { hour: '10:00', guests: 15, orders: 10 },
+  { hour: '12:00', guests: 45, orders: 32 },
+  { hour: '14:00', guests: 22, orders: 18 },
+  { hour: '16:00', guests: 18, orders: 14 },
+  { hour: '18:00', guests: 65, orders: 48 },
+  { hour: '20:00', guests: 55, orders: 42 },
+  { hour: '22:00', guests: 20, orders: 15 },
+];
+
+const MOCK_LABOR_DATA: LaborItem[] = [
+  { hour: '18:00', hosts: 2, servers: 6, kitchen: 4, confidence: 'high' },
+  { hour: '19:00', hosts: 3, servers: 8, kitchen: 5, confidence: 'high' },
+  { hour: '20:00', hosts: 2, servers: 7, kitchen: 4, confidence: 'medium' },
+  { hour: '21:00', hosts: 1, servers: 4, kitchen: 3, confidence: 'high' },
+];
+
 export default function Dashboard() {
   const pathname = usePathname();
-  const [forecastData, setForecastData] = useState<any[]>([]);
-  const [laborData, setLaborData] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [forecastData] = useState<ForecastItem[]>(MOCK_FORECAST_DATA);
+  const [laborData] = useState<LaborItem[]>(MOCK_LABOR_DATA);
 
-  useEffect(() => {
-    // Simulating API fetch
-    const fetchData = async () => {
-      try {
-        // In a real app, we would fetch from the APIs we just created
-        // For this demo, we'll use some mock data if the APIs are not yet ready/accessible
-        setForecastData([
-          { hour: '08:00', guests: 12, orders: 8 },
-          { hour: '10:00', guests: 15, orders: 10 },
-          { hour: '12:00', guests: 45, orders: 32 },
-          { hour: '14:00', guests: 22, orders: 18 },
-          { hour: '16:00', guests: 18, orders: 14 },
-          { hour: '18:00', guests: 65, orders: 48 },
-          { hour: '20:00', guests: 55, orders: 42 },
-          { hour: '22:00', guests: 20, orders: 15 },
-        ]);
-        
-        setLaborData([
-          { hour: '18:00', hosts: 2, servers: 6, kitchen: 4, confidence: 'high' },
-          { hour: '19:00', hosts: 3, servers: 8, kitchen: 5, confidence: 'high' },
-          { hour: '20:00', hosts: 2, servers: 7, kitchen: 4, confidence: 'medium' },
-          { hour: '21:00', hosts: 1, servers: 4, kitchen: 3, confidence: 'high' },
-        ]);
-        setLoading(false);
-      } catch (e) {
-        console.error(e);
-      }
-    };
-    fetchData();
-  }, []);
-
-  const handleExport = () => {
+  const handleExport = (): void => {
     const parts: string[] = [];
     parts.push('"Export Plan"');
     parts.push(`Generated at:,${new Date().toISOString()}`);
@@ -94,15 +106,15 @@ export default function Dashboard() {
 
     parts.push('Forecast');
     parts.push(['Hour', 'Guests', 'Orders'].join(','));
-    forecastData.forEach((f: any) => {
+    forecastData.forEach((f: ForecastItem) => {
       parts.push([f.hour, f.guests, f.orders].join(','));
     });
     parts.push('');
 
     parts.push('Labor Plan');
     parts.push(['Time Slot', 'Hosts', 'Servers', 'Kitchen', 'Confidence'].join(','));
-    laborData.forEach((l: any) => {
-      parts.push([l.hour, l.hosts, l.servers, l.kitchen, (l.confidence || '').toString()].join(','));
+    laborData.forEach((l: LaborItem) => {
+      parts.push([l.hour, l.hosts, l.servers, l.kitchen, l.confidence].join(','));
     });
 
     const csv = parts.join('\r\n');

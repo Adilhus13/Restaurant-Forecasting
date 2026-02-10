@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import {
   ArrowLeft,
-  Settings as SettingsIcon,
   Save,
   AlertCircle,
   CheckCircle2,
@@ -26,10 +25,17 @@ export default function SettingsPage() {
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState("");
 
-  const handleChange = (field: string, value: any) => {
-    setSettings({ ...settings, [field]: value });
-    setSaved(false);
-  };
+  const handleChange = (
+    field: keyof typeof settings,
+    value: string | number
+  ): void => {
+  setSettings(prev => ({
+    ...prev,
+    [field]: value,
+  }));
+  setSaved(false);
+};
+
 
   const handleSave = async () => {
     try {
@@ -51,17 +57,18 @@ export default function SettingsPage() {
         })
       });
 
-      const data = await resp.json();
+      const data = await resp.json() as { error?: string };
       if (!resp.ok) throw new Error(data.error || 'Failed to save');
       setSaved(true);
       setError("");
       setTimeout(() => setSaved(false), 3000);
-    } catch (e: any) {
-      setError(e.message);
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Unknown error';
+      setError(message);
     }
   };
 
-  const SettingField = ({ label, field, type = "text", help }: any) => (
+  const SettingField = ({ label, field, type = "text", help }: { label: string; field: keyof typeof settings; type?: string; help?: string }) => (
     <div style={{ marginBottom: "2rem" }}>
       <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: 600, color: "#f8fafc" }}>
         {label}
@@ -69,7 +76,17 @@ export default function SettingsPage() {
       <input
         type={type}
         value={settings[field as keyof typeof settings]}
-        onChange={(e) => handleChange(field, type === "number" ? parseFloat(e.target.value) : e.target.value)}
+        
+        onChange={(e) =>
+  handleChange(
+    field,
+    type === "number"
+      ? Number(e.target.value)
+      : e.target.value
+  )
+}
+
+        
         style={{
           width: "100%",
           padding: "0.75rem",

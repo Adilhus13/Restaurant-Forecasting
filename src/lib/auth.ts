@@ -12,7 +12,7 @@ export function getUserFromHeader(headers: Headers): User | null {
   try {
     const parsed = JSON.parse(raw);
     return parsed as User;
-  } catch (e) {
+  } catch {
     return null;
   }
 }

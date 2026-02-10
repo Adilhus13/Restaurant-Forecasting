@@ -40,7 +40,7 @@ export async function POST(req: Request) {
     console.log("Generating seed events...");
     const seedEvents = generateSeedData(locationId);
     
-    // Batch Insert (SQLite has limits, so we chunk)
+    // Batch Insert (PostgreSQL has limits, so we chunk)
     console.log(`Inserting ${seedEvents.length} events in chunks...`);
     const chunkSize = 100;
     for (let i = 0; i < seedEvents.length; i += chunkSize) {
@@ -54,8 +54,7 @@ export async function POST(req: Request) {
                 partySize: e.partySize,
                 revenue: e.revenue,
                 source: e.source
-            })),
-            skipDuplicates: true
+            }))
         });
     }
 
@@ -77,18 +76,18 @@ export async function POST(req: Request) {
                 avgGuests: r.avgGuests!,
                 avgOrders: r.avgOrders!,
                 avgRevenue: r.avgRevenue!,
-            })),
-            skipDuplicates: true
+            }))
         });
     }
 
     console.log("Seed successful");
     return NextResponse.json({ message: "Seed data generated successfully", eventCount: seedEvents.length }, { status: 201 });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Seed data error:", error);
+    const message = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json({ 
-        error: error.message,
-        stack: error.stack 
+        error: message,
+        stack: error instanceof Error ? error.stack : undefined
     }, { status: 500 });
   }
 }

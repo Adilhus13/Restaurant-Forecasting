@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { 
   Database, 
   Upload, 
@@ -14,7 +15,7 @@ export default function IngestionPage() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
 
-  const handleSeed = async () => {
+  const handleSeed = async (): Promise<void> => {
     setStatus("loading");
     try {
       const resp = await fetch("/api/demand/seed", {
@@ -33,9 +34,10 @@ export default function IngestionPage() {
       } else {
         throw new Error(data.error);
       }
-    } catch (e: any) {
+    } catch (err: unknown) {
       setStatus("error");
-      setMessage(e.message);
+      const message = err instanceof Error ? err.message : 'Error';
+      setMessage(message);
     }
   };
 
@@ -44,9 +46,9 @@ export default function IngestionPage() {
       <main className="main-content" style={{ maxWidth: '800px', margin: '0 auto' }}>
         <header className="header" style={{ marginBottom: '3rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <a href="/" className="nav-link" style={{ padding: '0.5rem' }}>
+            <Link href="/" className="nav-link" style={{ padding: '0.5rem' }}>
               <ArrowLeft size={20} />
-            </a>
+            </Link>
             <div>
               <h1 className="page-title">Data Ingestion</h1>
               <p style={{ color: '#94a3b8' }}>Populate your forecast engine with historical data</p>

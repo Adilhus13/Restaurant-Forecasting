@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { calculateForecast } from "@/lib/engines/forecast";
-import { calculateLabor, getConfidenceScore } from "@/lib/engines/labor";
+import { calculateLabor } from "@/lib/engines/labor";
 
 export async function GET(req: Request) {
   try {
@@ -55,8 +55,9 @@ export async function GET(req: Request) {
     }
 
     return NextResponse.json(laborPlan);
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Labor plan error:", error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }
