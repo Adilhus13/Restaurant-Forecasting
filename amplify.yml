@@ -5,6 +5,7 @@ frontend:
     preBuild:
       commands:
         - NPM_CONFIG_PRODUCTION=false npm ci
+        - npx prisma generate
     build:
       commands:
         - npm run build
@@ -22,6 +23,7 @@ backend:
     install:
       commands:
         - NPM_CONFIG_PRODUCTION=false npm ci
+        - npx prisma generate
     build:
       commands:
         - npx prisma migrate deploy || true
