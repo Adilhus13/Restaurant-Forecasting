@@ -1,0 +1,20 @@
+# Terraform Variables Example
+# Copy to terraform.tfvars and fill in your actual values
+
+aws_region            = "eu-north-1"
+environment           = "production"
+db_instance_class     = "db.t3.micro"
+db_allocated_storage  = 20
+db_password           = "your-strong-password-here"
+
+# Get these from your VPC (default VPC has default subnets)
+# Run: aws ec2 describe-subnets --filters "Name=default-for-az,Values=true" --region eu-north-1
+db_subnet_ids = [
+  "subnet-xxxxxxxxxxxxx",
+  "subnet-yyyyyyyyyyyyy"
+]
+
+# If deploying to EC2, use EC2 security group CIDR or allow Amplify app
+allowed_cidr = "10.0.0.0/16"
+
+skip_final_snapshot = false  # Set to true for dev/testing only
