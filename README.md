@@ -29,7 +29,7 @@ A predictive operations platform for restaurants that forecasts hourly demand by
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Adilhus13/Restaurant-Forecasting.git
    cd restaurant-forecasting
    ```
 
