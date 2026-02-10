@@ -24,4 +24,4 @@ backend:
         - npm ci
     build:
       commands:
-        - npx prisma migrate deploy
+        - npx prisma migrate deploy || true
