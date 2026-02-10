@@ -4,22 +4,20 @@ backend:
   phases:
     preBuild:
       commands:
-        - echo "Installing dependencies..."
         - npm ci
     build:
       commands:
-        - echo "Running Prisma migrations..."
         - npx prisma migrate deploy
+        - npm run build
 
 frontend:
   phases:
     preBuild:
       commands:
-        - echo "Frontend preBuild"
+        - echo "Frontend build"
     build:
       commands:
-        - echo "Building Next.js app..."
-        - npm run build
+        - echo "Next.js frontend"
 
 artifacts:
   baseDirectory: .next
