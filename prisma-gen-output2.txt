@@ -1,0 +1,33 @@
+﻿node.exe : Loaded 
+Prisma config from 
+prisma.config.ts.
+At line:1 char:1
++ & "C:\Program File
+s\nodejs/node.exe" 
+"C:\Program Files\no
+dejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~
+    + CategoryInfo  
+            : NotS  
+  pecified: (Load   
+ ed Prisma c...i    
+sma.config.ts.:    
+String) [], Rem    
+oteException
+    + FullyQualifie 
+   dErrorId : Nati  
+  veCommandError
+ 
+
+Prisma schema 
+loaded from prisma\s
+chema.prisma.
+
+Γ£ö Generated Prisma Client (v7.3.0) to .\node_modules\@prisma\client in 137ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+

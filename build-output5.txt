@@ -1,0 +1,112 @@
+﻿
+> restaurant-forecasting@0.1.0 build
+> next build
+
+   Γû▓ Next.js 15.1.6
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully
+   Linting and checking validity of types ...
+
+./src/lib/prisma.ts
+27:7  Warning: Unused eslint-disable directive (no problems were reported from 'no-console').
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+   Collecting page data ...
+node.exe : Error [Pr
+ismaClientInitializa
+tionError]: The 
+Driver Adapter `@pri
+sma/adapter-better-s
+qlite3`, based on 
+`sqlite`, is not 
+compatible with the 
+provider `postgres` 
+specified in the 
+Prisma schema.
+At line:1 char:1
++ & "C:\Program File
+s\nodejs/node.exe" 
+"C:\Program Files\no
+dejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~
+    + CategoryInfo  
+            : NotS  
+  pecified: (Erro   
+ r [PrismaCl...     
+Prisma schema.:    
+String) [], Rem    
+oteException
+    + FullyQualifie 
+   dErrorId : Nati  
+  veCommandError
+ 
+    at <unknown> (C:
+\Users\Assam\Desktop
+\Ahsan\restaurant-fo
+recasting\.next\serv
+er\app\api\feedback\
+route.js:1:2380)
+    at 43219 (C:\Use
+rs\Assam\Desktop\Ahs
+an\restaurant-foreca
+sting\.next\server\a
+pp\api\feedback\rout
+e.js:1:2403)
+    at t (C:\Users\A
+ssam\Desktop\Ahsan\r
+estaurant-forecastin
+g\.next\server\webpa
+ck-runtime.js:1:127)
+    at 23551 (C:\Use
+rs\Assam\Desktop\Ahs
+an\restaurant-foreca
+sting\.next\server\a
+pp\api\feedback\rout
+e.js:1:865)
+    at t (C:\Users\A
+ssam\Desktop\Ahsan\r
+estaurant-forecastin
+g\.next\server\webpa
+ck-runtime.js:1:127)
+    at t (C:\Users\A
+ssam\Desktop\Ahsan\r
+estaurant-forecastin
+g\.next\server\app\a
+pi\feedback\route.js
+:1:2469)
+    at <unknown> (C:
+\Users\Assam\Desktop
+\Ahsan\restaurant-fo
+recasting\.next\serv
+er\app\api\feedback\
+route.js:1:2504)
+    at t.X (C:\Users
+\Assam\Desktop\Ahsan
+\restaurant-forecast
+ing\.next\server\web
+pack-runtime.js:1:11
+91)
+    at <unknown> (C:
+\Users\Assam\Desktop
+\Ahsan\restaurant-fo
+recasting\.next\serv
+er\app\api\feedback\
+route.js:1:2482) {
+  clientVersion: 
+'7.3.0',
+  errorCode: 
+undefined,
+  retryable: 
+undefined
+}
+
+> Build error 
+occurred
+[Error: Failed to 
+collect page data 
+for /api/feedback] 
+{ type: 'Error' }

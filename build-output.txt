@@ -1,0 +1,73 @@
+﻿   Γû▓ Next.js 15.1.6
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully
+   Linting and checking validity of types ...
+node.exe : Failed 
+to compile.
+At line:1 char:1
++ & "C:\Program File
+s\nodejs/node.exe" 
+"C:\Program Files\no
+dejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~
+    + CategoryInfo  
+            : NotS  
+  pecified: (Fail   
+ ed to compile.:    
+String) [], Rem    
+oteException
+    + FullyQualifie 
+   dErrorId : Nati  
+  veCommandError
+ 
+
+./src/lib/prisma.ts:
+26:77
+Type error: 
+Property 'message' 
+does not exist on 
+type '{}'.
+
+[0m [90m 24 
+|[39m     [90m// 
+Falling back to the 
+default driver is 
+intentional for 
+Postgres.[39m[0m
+[0m [90m 25 
+|[39m     [90m// e
+slint-disable-next-l
+ine 
+no-console[39m[0m
+[0m[31m[1m>[22m
+[39m[90m 26 |[39m 
+    console[33m.[3
+9mwarn([32m"SQLite 
+adapter not 
+available, 
+continuing without i
+t."[39m[33m,[39m 
+e[33m?[39m[33m.[
+39mmessage 
+[33m||[39m 
+e)[33m;[39m[0m
+[0m [90m    
+|[39m              
+                    
+                    
+                    
+   [31m[1m^[22m[
+39m[0m
+[0m [90m 27 
+|[39m   }[0m
+[0m [90m 28 
+|[39m }[0m
+[0m [90m 29 
+|[39m[0m
+Static worker 
+exited with code: 1 
+and signal: null

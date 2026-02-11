@@ -1,0 +1,74 @@
+﻿
+> restaurant-forecasting@0.1.0 build
+> next build
+
+   Γû▓ Next.js 15.1.6
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully
+   Linting and checking validity of types ...
+node.exe : 
+At line:1 char:1
++ & "C:\Program File
+s\nodejs/node.exe" 
+"C:\Program Files\no
+dejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~
+    + CategoryInfo  
+            : NotS  
+  pecified: (:Str   
+ ing) [], Remote    
+Exception
+    + FullyQualifie 
+   dErrorId : Nati  
+  veCommandError
+ 
+Failed to compile.
+
+./src/lib/prisma.ts
+20:7  Warning: 
+Unused 
+eslint-disable 
+directive (no 
+problems were 
+reported from '@type
+script-eslint/no-var
+-requires').
+21:39  Error: A 
+`require()` style 
+import is 
+forbidden.  @typescr
+ipt-eslint/no-requir
+e-imports
+22:7  Warning: 
+Unused 
+eslint-disable 
+directive (no 
+problems were 
+reported from '@type
+script-eslint/no-var
+-requires').
+23:24  Error: A 
+`require()` style 
+import is 
+forbidden.  @typescr
+ipt-eslint/no-requir
+e-imports
+27:7  Warning: 
+Unused 
+eslint-disable 
+directive (no 
+problems were 
+reported from 
+'no-console').
+
+info  - Need to 
+disable some ESLint 
+rules? Learn more 
+here: https://nextjs
+.org/docs/app/api-re
+ference/config/eslin
+t#disabling-rules

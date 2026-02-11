@@ -1,0 +1,99 @@
+﻿
+> restaurant-forecasting@0.1.0 build
+> next build
+
+   Γû▓ Next.js 15.1.6
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully
+   Linting and checking validity of types ...
+
+./src/lib/prisma.ts
+27:7  Warning: Unused eslint-disable directive (no problems were reported from 'no-console').
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+   Collecting page data ...
+node.exe : Error [Pr
+ismaClientConstructo
+rValidationError]: 
+Using engine type 
+"client" requires 
+either "adapter" or 
+"accelerateUrl" to 
+be provided to 
+PrismaClient 
+constructor.
+At line:1 char:1
++ & "C:\Program File
+s\nodejs/node.exe" 
+"C:\Program Files\no
+dejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~
+    + CategoryInfo  
+            : NotS  
+  pecified: (Erro   
+ r [PrismaCl...n    
+t constructor.:    
+String) [], Rem    
+oteException
+    + FullyQualifie 
+   dErrorId : Nati  
+  veCommandError
+ 
+Read more at https:/
+/pris.ly/d/client-co
+nstructor
+    at 43219 (C:\Use
+rs\Assam\Desktop\Ahs
+an\restaurant-foreca
+sting\.next\server\a
+pp\api\demand\events
+\route.js:1:2758)
+    at t (C:\Users\A
+ssam\Desktop\Ahsan\r
+estaurant-forecastin
+g\.next\server\webpa
+ck-runtime.js:1:127)
+    at 67759 (C:\Use
+rs\Assam\Desktop\Ahs
+an\restaurant-foreca
+sting\.next\server\a
+pp\api\demand\events
+\route.js:1:807)
+    at t (C:\Users\A
+ssam\Desktop\Ahsan\r
+estaurant-forecastin
+g\.next\server\webpa
+ck-runtime.js:1:127)
+    at r (C:\Users\A
+ssam\Desktop\Ahsan\r
+estaurant-forecastin
+g\.next\server\app\a
+pi\demand\events\rou
+te.js:1:3391)
+    at <unknown> (C:
+\Users\Assam\Desktop
+\Ahsan\restaurant-fo
+recasting\.next\serv
+er\app\api\demand\ev
+ents\route.js:1:3422
+)
+    at t.X (C:\Users
+\Assam\Desktop\Ahsan
+\restaurant-forecast
+ing\.next\server\web
+pack-runtime.js:1:11
+91)
+
+> Build error 
+occurred
+[Error: Failed to 
+collect page data 
+for 
+/api/demand/events] 
+{
+  type: 'Error'
+}
